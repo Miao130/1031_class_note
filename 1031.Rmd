@@ -1,0 +1,49 @@
+---
+title: '1031'
+author: "Miao Fu"
+date: "2023-10-31"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(tidyverse)
+```
+
+```{r}
+list_norm_samples=
+  list(
+    a=rnorm(20,1,5),
+    b=rnorm(20,0,7),
+    c=rnorm(20,20,1),
+    d=rnorm(20,-45,13)
+  )
+
+mean_and_sd=function(x){
+  mean_x=mean(x)
+  std_x=sd(x)
+  
+  tibble(
+    mean=mean_x,
+    sd=std_x
+  )
+}
+
+mean_and_sd(list_norm_samples$a)
+
+output_mean_sd=map(list_norm_samples,mean_and_sd)
+```
+```{r}
+output=vector("list",length=4)
+for (i in 1:4) {
+  output[[i]]=mean_and_sd(list_norm_samples[[i]])
+}
+```
+
+
+```{r}
+
+```
+
+
